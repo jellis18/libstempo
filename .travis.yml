@@ -11,6 +11,7 @@ matrix:
         - python: 3.5
 
 before_install:
+    - sudo apt-get install gfortran
     - git clone https://bitbucket.org/psrsoft/tempo2.git
     - cd tempo2
     - ./bootstrap
