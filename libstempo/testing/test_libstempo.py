@@ -4,7 +4,8 @@ import matplotlib
 matplotlib.use('agg')
 
 import sys, math, numpy as N, matplotlib.pyplot as P
-from context import libstempo as T
+#from context import libstempo as T
+import libstempo as T
 
 
 T.data = T.__path__[0] + '/data/' # example files
@@ -23,3 +24,6 @@ def _test_load():
     return True
 
 
+if __name__ == "__main__":
+    assert(_test_version())
+    assert(_test_load())

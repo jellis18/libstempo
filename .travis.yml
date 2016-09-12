@@ -1,6 +1,5 @@
 language: python
 
-
 matrix:
     include:
         # All the versions of Python.
@@ -28,4 +27,5 @@ install:
     - python setup.py install --with-tempo2=$TEMPO2
 
 script:
-    - nosetests -vv
+    - cd libstempo/testing
+    - python test_libstempo.py
