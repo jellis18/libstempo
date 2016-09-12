@@ -28,4 +28,4 @@ install:
     - python setup.py install --with-tempo2=$TEMPO2
 
 script:
-    - python -c 'import libstempo; print libstempo'
+    - nosetests -vv

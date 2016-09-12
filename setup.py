@@ -69,7 +69,7 @@ setup(name = 'libstempo',
       author_email = 'vallis@vallis.org',
       url = 'https://github.com/vallis/libstempo',
 
-      packages = ['libstempo'],
+      packages = ['libstempo', 'libstempo.testing'],
       package_dir = {'libstempo': 'libstempo'},
       package_data = {'libstempo': ['data/*', 'ecc_vs_nharm.txt']},
       install_requires=[
