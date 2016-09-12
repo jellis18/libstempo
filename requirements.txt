@@ -1,5 +1,4 @@
 Cython==0.24.1
-ephem==3.7.6.0
 jupyter==1.0.0
 scipy==0.18.0
 ephem==3.7.6.0

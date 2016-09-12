@@ -17,15 +17,15 @@ before_install:
     - ./bootstrap
     - mkdir -p $HOME/.local/tempo2
     - export TEMPO2=$HOME/.local/tempo2
+    - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TEMPO2/lib
     - cp -r T2runtime/* $TEMPO2
     - ./configure --prefix=$TEMPO2
     - make && make install
     - cd ../
 
 install:
-    - pip install numpy
     - pip install -r requirements.txt
     - python setup.py install --with-tempo2=$TEMPO2
 
 script:
-    - which python
+    - python -c 'import libstempo; print libstempo'
