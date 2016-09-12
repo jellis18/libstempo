@@ -72,6 +72,9 @@ setup(name = 'libstempo',
       packages = ['libstempo'],
       package_dir = {'libstempo': 'libstempo'},
       package_data = {'libstempo': ['data/*', 'ecc_vs_nharm.txt']},
+      install_requires=[
+          'scipy>=0.15.1', 
+          'ephem>=3.7.5.3'],
 
       py_modules = ['libstempo.like','libstempo.multinest','libstempo.emcee',
                     'libstempo.plot','libstempo.toasim',
