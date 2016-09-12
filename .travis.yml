@@ -14,7 +14,7 @@ before_install:
     - git clone https://bitbucket.org/psrsoft/tempo2.git
     - cd tempo2
     - ./bootstrap
-    - mkdir $HOME/.local/tempo2
+    - mkdir -p $HOME/.local/tempo2
     - export TEMPO2=$HOME/.local/tempo2
     - cp -r T2runtime/* $TEMPO2
     - ./configure --prefix=$TEMPO2
