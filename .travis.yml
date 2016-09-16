@@ -1,5 +1,9 @@
 language: python
 
+os:
+    - linux
+    - osx
+
 matrix:
     include:
         # All the versions of Python.
@@ -10,8 +14,11 @@ matrix:
         - python: 3.5
 
 before_install:
-    - sudo apt-get install gfortran
-    - git clone https://bitbucket.org/psrsoft/tempo2.git
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install gfortran; fi
+    - git clone https://jellis11@bitbucket.org/jellis11/tempo2.git
+#- git clone https://bitbucket.org/psrsoft/tempo2.git
     - cd tempo2
     - ./bootstrap
     - mkdir -p $HOME/.local/tempo2
