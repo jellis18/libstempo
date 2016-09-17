@@ -36,5 +36,6 @@ install:
 
 script:
     - cd ../
+    - python -c "print(open('libstempo/libstempo/__init__.py', 'r').read())"
     - python -c "import libstempo"
     - python -c "import libstempo.toasim"
