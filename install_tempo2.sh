@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # get install location
 if [ $# -eq 0 ]
@@ -10,16 +10,23 @@ if [ $# -eq 0 ]
 		echo 'Will install in' $prefix
 fi
 
-#git clone https://bitbucket.org/psrsoft/tempo2.git
-git clone https://jellis11@bitbucket.org/jellis11/tempo2.git
-cd tempo2
+# make a destination directory for runtime files
+export TEMPO2=$prefix/share/tempo2
+mkdir -p $TEMPO2
+
+# git clone https://bitbucket.org/psrsoft/tempo2.git
+# git clone https://jellis11@bitbucket.org/jellis11/tempo2.git
+# cd tempo2
+curl -O https://bitbucket.org/jellis11/tempo2/get/master.tar.gz -z master.tar.gz
+tar zxvf master.tar.gz
+cd jellis11-tempo2-*
+
 ./bootstrap
-mkdir -p $prefix
-export TEMPO2=$prefix
-export LD_LIBRARY_PATH=$TEMPO2/lib:$LD_LIBRARY_PATH
-cp -r T2runtime/* $TEMPO2
-./configure --prefix=$TEMPO2
+./configure --prefix=$prefix
 make && make install
-make plugins-install
-cd ../
-rm -rf tempo2
+# make plugins-install
+cp -Rp T2runtime/* $TEMPO2/.
+cd ..
+
+# rm -rf tempo2
+rm -rf jellis11-tempo2-*
