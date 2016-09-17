@@ -35,5 +35,6 @@ install:
     - python setup.py install --force-tempo2-install
 
 script:
-    - cd libstempo/testing
-    - python test_libstempo.py
+    - cd ../
+    - python -c "import libstempo"
+    - python -c "import libstempo.toasim"

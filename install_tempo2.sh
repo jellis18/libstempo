@@ -15,8 +15,8 @@ export TEMPO2=$prefix/share/tempo2
 mkdir -p $TEMPO2
 
 # git clone https://bitbucket.org/psrsoft/tempo2.git
-# git clone https://jellis11@bitbucket.org/jellis11/tempo2.git
-# cd tempo2
+#git clone https://jellis11@bitbucket.org/jellis11/tempo2.git
+#cd tempo2
 curl -O https://bitbucket.org/jellis11/tempo2/get/master.tar.gz -z master.tar.gz
 tar zxvf master.tar.gz
 cd jellis11-tempo2-*
@@ -28,5 +28,5 @@ make && make install
 cp -Rp T2runtime/* $TEMPO2/.
 cd ..
 
-# rm -rf tempo2
-rm -rf jellis11-tempo2-*
+#rm -rf tempo2
+rm -rf jellis11-tempo2-* master.tar.gz
