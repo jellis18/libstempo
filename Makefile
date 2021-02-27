@@ -29,10 +29,11 @@ help:
 
 init: ## initialize virtual environment and install package
 	@python3 -m venv .libstempo --prompt libstempo
-	@./.libstempo/bin/python3 -m pip install -r requirements.txt -U
-	@./.libstempo/bin/python3 -m pip install -r requirements_dev.txt -U
+	@./.libstempo/bin/python3 -m pip install -r requirements_dev.txt
+	@./.libstempo/bin/python3 -m pip install -r requirements.txt
 	@./.libstempo/bin/python3 -m pre_commit install --install-hooks --overwrite
 	@./.libstempo/bin/python3 -m pip install -e ."[astropy]"
+	@echo "Run source .libstempo/bin/activate to activate virtual environment"
 
 format:
 	black .
@@ -49,6 +50,7 @@ clean-build: ## remove build artifacts
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
+	rm -rf .libstempo
 
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
