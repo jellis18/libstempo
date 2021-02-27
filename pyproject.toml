@@ -16,7 +16,7 @@ exclude = '''
     | build
     | dist
     | docs
-    | venv
+    | .libstempo
   )/
 )
 '''

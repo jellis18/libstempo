@@ -70,7 +70,7 @@ target/
 .DS_Store
 
 # virtual environment
-venv
+.libstempo
 
 # vscode
 .vscode
