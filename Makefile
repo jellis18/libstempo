@@ -62,7 +62,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 
-test: ## run tests quickly with the default Python
+test: lint ## run tests quickly with the default Python
 	pytest -v --full-trace --cov-config .coveragerc --cov=libstempo tests
 
 coverage: ## check code coverage quickly with the default Python
