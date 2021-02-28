@@ -33,6 +33,7 @@ setup(
     ],
     install_requires=["Cython>=0.22", "numpy>=1.15.0", "scipy>=1.2.0", "matplotlib>=3.3.2", "ephem>=3.7.7.1"],
     extras_require={"astropy": ["astropy>=4.2"]},
+    python_requires=">=3.6",
     ext_modules=cythonize(
         Extension(
             "libstempo.libstempo",
