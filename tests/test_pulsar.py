@@ -1,9 +1,14 @@
+import shutil
 import unittest
+from pathlib import Path
 
 import libstempo as t2
 import numpy as np
 
 DATA_PATH = t2.__path__[0] + "/data/"
+
+TMP_DIR = Path("test_output")
+TMP_DIR.mkdir(exist_ok=True)
 
 
 class TestDeterministicSignals(unittest.TestCase):
@@ -12,6 +17,10 @@ class TestDeterministicSignals(unittest.TestCase):
         cls.psr = t2.tempopulsar(
             parfile=DATA_PATH + "/J1909-3744_NANOGrav_dfg+12.par", timfile=DATA_PATH + "/J1909-3744_NANOGrav_dfg+12.tim"
         )
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(TMP_DIR)
 
     def test_attrs(self):
         self.assertEqual(self.psr.nobs, 1001)
@@ -60,3 +69,10 @@ class TestDeterministicSignals(unittest.TestCase):
     def test_designmatrix(self):
         dmat = self.psr.designmatrix()
         self.assertEqual(dmat.shape, (1001, 83))
+
+    def test_save_partim(self):
+        self.psr.savepar(str(TMP_DIR / "tmp.par"))
+        self.psr.savetim(str(TMP_DIR / "tmp.tim"))
+
+        self.assertTrue((TMP_DIR / "tmp.par").exists())
+        self.assertTrue((TMP_DIR / "tmp.tim").exists())
