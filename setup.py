@@ -23,7 +23,7 @@ def _get_tempo2_install_location():
 
     # TODO: add check from $TEMPO2
     raise RuntimeError(
-        "Cannot find tempo2 install location. Use install_tempo2.sh scrip to install or install globally."
+        "Cannot find tempo2 install location. Use install_tempo2.sh script to install or install globally."
     )
 
 
@@ -55,7 +55,7 @@ setup(
         "libstempo.eccUtils",
     ],
     install_requires=["Cython>=0.22", "numpy>=1.15.0", "scipy>=1.2.0", "matplotlib>=3.3.2", "ephem>=3.7.7.1"],
-    extras_require={"astropy": ["astropy>=4.2"]},
+    extras_require={"astropy": ["astropy>=4.1"]},
     python_requires=">=3.6",
     ext_modules=cythonize(
         Extension(
