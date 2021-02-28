@@ -1,10 +1,33 @@
+import os
 import platform
+from pathlib import Path
 
 import numpy
 from Cython.Build import cythonize
 from setuptools import Extension, setup
 
-TEMPO2 = "/usr/local"
+
+# we assume that you have either installed tempo2 via install_tempo2.sh
+# or you have installed in the usual /usr/local
+# or you have the TEMPO2 variable set
+def _get_tempo2_install_location():
+    # first check local install
+    local = Path(os.getenv("HOME")) / ".local"
+    if (local / "include/tempo2.h").exists():
+        return str(local)
+
+    # next try global
+    glbl = Path("/usr/local")
+    if (glbl / "include/tempo2.h").exists():
+        return str(glbl)
+
+    # TODO: add check from $TEMPO2
+    raise RuntimeError(
+        "Cannot find tempo2 install location. Use install_tempo2.sh scrip to install or install globally."
+    )
+
+
+TEMPO2 = _get_tempo2_install_location()
 
 # need rpath links to shared libraries on Linux
 if platform.system() == "Linux":
@@ -14,7 +37,7 @@ else:
 
 setup(
     name="libstempo",
-    version="2.3.5",  # remember to change it in __init__.py.in
+    version="2.3.5",  # remember to change it in __init__.py
     description="A Python wrapper for tempo2",
     author="Michele Vallisneri",
     author_email="vallis@vallis.org",
