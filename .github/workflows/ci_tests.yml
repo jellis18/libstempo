@@ -71,7 +71,7 @@ jobs:
       run: |
         python -m venv venv-wheel
         venv-wheel/bin/python -m pip install dist/libstempo*.whl
-        venv-wheel/bin/python -c "import emcee;print(libstempo.__version__)"
+        venv-wheel/bin/python -c "import libstempo;print(libstempo.__version__)"
     - uses: actions/upload-artifact@v2
       with:
         name: dist
