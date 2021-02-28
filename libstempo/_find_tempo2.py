@@ -21,7 +21,8 @@ def find_tempo2_runtime():
 
     # if not, check for tempo2 binary in path
     try:
-        out = subprocess.check_output("which tempo2", shell=True).decode().strip()
+        out = subprocess.check_output("which tempo2", shell=True)
+        out = out.decode().strip()
     except subprocess.CalledProcessError:
         raise subprocess.CalledProcessError(
             ("tempo2 does not appear to be in your path. Please make sure the executable is in your path")
@@ -35,7 +36,8 @@ def find_tempo2_runtime():
         for d in share_dir.iterdir():
             if d.is_dir():
                 # if this directory contains the runtime dirs then set this to be the runtime dir
-                if all(rd in list(d.iterdir()) for rd in RUNTIME_DIRS):
+                dirs = [dd.stem for dd in d.iterdir() if dd.is_dir()]
+                if all(rd in dirs for rd in RUNTIME_DIRS):
                     return str(d)
     else:
         raise FileNotFoundError(f"Directory {str(share_dir)} does not exist. Can't find T2runtime")

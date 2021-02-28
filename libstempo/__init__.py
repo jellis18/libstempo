@@ -13,6 +13,5 @@ TEMPO2_RUNTIME = os.getenv("TEMPO2")
 if not TEMPO2_RUNTIME:
     os.environ["TEMPO2"] = find_tempo2_runtime()
 
-print(os.environ["TEMPO2"])
 
 from libstempo.libstempo import *  # noqa F401,F402,F403
