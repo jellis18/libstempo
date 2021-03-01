@@ -2,7 +2,6 @@ include setup.py
 include install_tempo2.sh
 include requirements.txt
 include libstempo/__init__.py
-include libstempo/_find_tempo2.py
 include libstempo/libstempo.pyx
 include libstempo/libstempo.cpp
 include libstempo/GWsim-stub.h
