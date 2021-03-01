@@ -72,7 +72,7 @@ jobs:
         mkdir tmp  
         cd tmp
         python -m venv venv-sdist
-        venv-sdist/bin/python -m pip install --upgrade pip
+        venv-sdist/bin/python -m pip install --upgrade pip setuptools
         venv-sdist/bin/python -m pip install ../dist/libstempo*.tar.gz
         venv-sdist/bin/python -c "import libstempo;print(libstempo.__version__)"
     - name: Test the wheel
@@ -80,7 +80,7 @@ jobs:
         mkdir tmp2  
         cd tmp2
         python -m venv venv-wheel
-        venv-wheel/bin/python -m pip install --upgrade pip
+        venv-wheel/bin/python -m pip install --upgrade pip setuptools
         venv-wheel/bin/python -m pip install ../dist/libstempo*.whl
         venv-wheel/bin/python -c "import libstempo;print(libstempo.__version__)"
     - uses: actions/upload-artifact@v2
