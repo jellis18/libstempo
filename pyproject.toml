@@ -23,7 +23,7 @@ exclude = '''
 
 [build-system]
 requires = [
-    "setuptools",
+    "setuptools>=40.8.0",
     "wheel", # ephem package likes to have wheel installed
     "Cython>=0.22",
     "numpy>=1.15.0",
