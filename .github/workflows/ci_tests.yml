@@ -93,7 +93,7 @@ jobs:
         name: dist
         path: dist/*
 
-   deploy:
+  deploy:
     needs: [tests, build]
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
