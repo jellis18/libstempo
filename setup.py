@@ -1,5 +1,6 @@
 import os
 import platform
+import subprocess
 from pathlib import Path
 
 import numpy
@@ -9,7 +10,7 @@ from setuptools import Extension, setup
 
 # we assume that you have either installed tempo2 via install_tempo2.sh
 # or you have installed in the usual /usr/local
-# or you have the TEMPO2 variable set
+# or the tempo2 executable is in your path
 def _get_tempo2_install_location():
     # first check local install
     local = Path(os.getenv("HOME")) / ".local"
@@ -21,7 +22,20 @@ def _get_tempo2_install_location():
     if (glbl / "include/tempo2.h").exists():
         return str(glbl)
 
-    # TODO: add check from $TEMPO2
+    # if not, check for tempo2 binary in path
+    try:
+        out = subprocess.check_output("which tempo2", shell=True)
+        out = out.decode().strip()
+    except subprocess.CalledProcessError:
+        raise subprocess.CalledProcessError(
+            ("tempo2 does not appear to be in your path. Please make sure the executable is in your path")
+        )
+
+    # the executable should be in in bin/ so navigate back and check include/
+    root_dir = Path(out).parents[1]
+    if (root_dir / "include/tempo2.h").exists():
+        return str(root_dir)
+
     raise RuntimeError(
         "Cannot find tempo2 install location. Use install_tempo2.sh script to install or install globally."
     )
