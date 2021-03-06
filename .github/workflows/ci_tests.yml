@@ -43,6 +43,7 @@ jobs:
       run: make test
 
   build:
+    needs: [tests]
     name: Build source distribution
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
