@@ -42,11 +42,12 @@ jobs:
     - name: Test with pytest
       run: make test
 
+
   build:
     needs: [tests]
     name: Build source distribution
     runs-on: ubuntu-latest
-    #if: github.event_name == 'release'
+    if: github.event_name == 'release'
     strategy:
       fail-fast: false
       matrix:
@@ -94,10 +95,11 @@ jobs:
         name: dist
         path: dist/*
 
+
   deploy:
     needs: [tests, build]
     runs-on: ubuntu-latest
-    #if: github.event_name == 'release'
+    if: github.event_name == 'release'
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
@@ -114,10 +116,8 @@ jobs:
         name: dist
         path: dist
     - name: Build and publish
-      #env:
-      #  TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-      #  TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
-        ls
-        ls dist/*
         twine upload dist/*
