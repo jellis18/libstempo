@@ -83,17 +83,17 @@ jobs:
       run: |
         ./install_tempo2.sh
     - name: Build
+      env:
+        CIBW_ENVIRONMENT: MACOSX_DEPLOYMENT_TARGET=10.9
+        CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
+        CIBW_MANYLINUX_X86_64_IMAGE: manylinux2010
+
       run: |
-        python -m pip install --upgrade pip setuptools
-        pip install wheel
-        pip install -r requirements.txt
-        make dist
-    - name: Fix linux wheels
-      if: runner.os == 'Linux'
-      run: |
-        pip install auditwheel
-        auditwheel repair dist/libstempo*whl -w dist/
-        ls -l dist
+        python -m pip install --upgrade pip setuptools wheel
+        pip install cibuildwheel
+        python -m cibuildwheel --output-dir dist
+        pip install numpy cython
+        python setup.py sdist
     - name: Test the sdist
       run: |
         mkdir tmp  
