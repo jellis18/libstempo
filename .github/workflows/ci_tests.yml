@@ -88,6 +88,12 @@ jobs:
         pip install wheel
         pip install -r requirements.txt
         make dist
+    - name: Fix linux wheels
+      if: runner.os == "Linux"
+      pip install auditwheel
+      run: |
+        auditwheel repair dist/libstempo*whl -w dist/
+        ls -l dist
     - name: Test the sdist
       run: |
         mkdir tmp  
