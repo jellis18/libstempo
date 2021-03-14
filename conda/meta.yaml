@@ -1,0 +1,59 @@
+{% set name = "libstempo" %}
+{% set version = "2.3.5" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  path: ../../
+
+build:
+  number: 1
+  script: {{ PYTHON }} -m pip install --no-build-isolation . -vv
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - numpy ==1.18.1
+    - cython >=0.22
+    - python {{ python }}
+  host:
+    - pip
+    - setuptools
+    - astropy >=4.1
+    - cython >=0.22
+    - ephem >=3.7.7.1
+    - numpy >=0.15.0
+    - matplotlib >=3.3.2
+    - python {{ python }}
+    - scipy >=1.2.0
+    - tempo2
+  run:
+    - astropy >=4.1
+    - cython >=0.22
+    - ephem >=3.7.7.1
+    - numpy >=0.15.0
+    - matplotlib >=3.3.2
+    - python >=3.6
+    - scipy >=1.2.0
+    - tempo2
+
+test:
+  imports:
+    - libstempo
+
+about:
+  home: http://vallis.github.io/libstempo/
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: libstempo - a Python wrapper for tempo2
+  doc_url: http://vallis.github.io/libstempo/
+  dev_url: https://github.com/vallis/libstempo
+  description: |
+    A Python wrapper for tempo2.
+extra:
+  recipe-maintainers:
+    - mattpitkin
