@@ -1,22 +1,22 @@
-{% set name = "libstempo" %}
-{% set version = "2.3.5" %}
+{% set name = "libstempo-pulsar" %}
+{% set version = "2.4.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  path: ../../
+  path: ../
 
 build:
-  number: 1
+  skip: true  # [win]
   script: {{ PYTHON }} -m pip install --no-build-isolation . -vv
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - numpy ==1.18.1
+    - numpy {{ numpy }}
     - cython >=0.22
     - python {{ python }}
   host:
@@ -56,4 +56,4 @@ about:
     A Python wrapper for tempo2.
 extra:
   recipe-maintainers:
-    - mattpitkin
+    - jellis1895

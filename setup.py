@@ -50,7 +50,7 @@ else:
     linkArgs = []
 
 setup(
-    name="libstempo",
+    name="libstempo-pulsar",
     version="2.3.5",  # remember to change it in __init__.py
     description="A Python wrapper for tempo2",
     author="Michele Vallisneri",
