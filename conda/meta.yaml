@@ -1,12 +1,12 @@
 {% set name = "libstempo-pulsar" %}
-{% set version = "2.4.0" %}
+{% set version = "2.3.5" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  path: ../
+  path: ../dist/libstempo-pulsar-{{version}}.tar.gz
 
 build:
   skip: true  # [win]
@@ -16,7 +16,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - numpy {{ numpy }}
+    - defaults::numpy {{ numpy }}
     - cython >=0.22
     - python {{ python }}
   host:
@@ -43,6 +43,13 @@ requirements:
 test:
   imports:
     - libstempo
+    - libstempo.like
+    - libstempo.multinest
+    - libstempo.emcee
+    - libstempo.plot
+    - libstempo.toasim
+    - libstempo.eccUtils
+    - libstempo.spharmORFbasis
 
 about:
   home: http://vallis.github.io/libstempo/
