@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  path: ../dist/libstempo-pulsar-{{version}}.tar.gz
+  path: ../
 
 build:
   skip: true  # [win]
