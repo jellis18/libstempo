@@ -23,7 +23,7 @@ jobs:
           auto-update-conda: true
           auto-activate-base: false
           activate-environment: "build-libstempo"
-          channels: nanograv
+          channels: jellis1895
 
       - name: Setup conda env
         run: |
