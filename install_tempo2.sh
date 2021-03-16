@@ -15,7 +15,7 @@ export TEMPO2=$prefix/share/T2runtime
 mkdir -p $TEMPO2
 
 curl -O https://bitbucket.org/psrsoft/tempo2/get/2020.11.1.tar.gz
-tar zxvf 2020.11.1.tar.gz
+tar zxf 2020.11.1.tar.gz
 
 cd psrsoft-tempo2-*
 
