@@ -44,7 +44,6 @@ test:
   imports:
     - libstempo
     - libstempo.like
-    - libstempo.multinest
     - libstempo.emcee
     - libstempo.plot
     - libstempo.toasim
